@@ -52,7 +52,9 @@ target('dotest) {
         'path -> "**/*.scala", 
         'pattern -> ".*Spec.*"
     )
-    sh("java -cp ../lib/scala/scala-library.jar:" + environment.classpath + " org.junit.runner.JUnitCore SMapTest SMapTestWithFunctions")
+
+    val cp = ("../lib/scala/scala-library.jar") :: environment.classpath
+    sh("java -cp " + cp + " org.junit.runner.JUnitCore SMapTest SMapTestWithFunctions")
 }
 
 target('scripts) { 
@@ -78,7 +80,8 @@ target('compile -> List('clean, 'build_dir)) {
         'd         -> buildDir,
         'opts      -> "-unchecked -deprecation"
     )
-    sh("javac -Xlint:unchecked -d " + buildDir + " -cp ../lib/scala/scala-library.jar:" + environment.classpath + " SMapTest.java SMapTestWithFunctions.java")
+    val cp = ("../lib/scala/scala-library.jar") :: environment.classpath
+    sh("javac -Xlint:unchecked -d " + buildDir + " -cp " + cp + " SMapTest.java SMapTestWithFunctions.java")
 }
 
 target('spring -> 'compile) {
