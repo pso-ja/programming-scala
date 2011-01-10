@@ -84,7 +84,7 @@ target('compile -> List('clean, 'build_dir)) {
 }
 
 target('spring -> 'compile) {
-    val spring = environment.environmentVariables.get("SPRING_HOME")
+    val spring = environment.environmentVariables.getOrElse("SPRING_HOME", "")
     val cp = (spring + "/dist/org.springframework.asm-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.beans-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.context-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.core-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.expression-3.0.3.RELEASE.jar") :: (spring + "/lib/jakarta-commons/commons-logging-1.1.1.jar") :: "." :: environment.classpath
     scala(
         'classpath -> cp,
@@ -92,9 +92,12 @@ target('spring -> 'compile) {
 }
 
 target('aspectj -> 'compile) {
-    val aspectj = environment.environmentVariables.get("ASPECTJ_HOME")
+    val aspectj = environment.environmentVariables.getOrElse("ASPECTJ_HOME", "")
     val cp = (aspectj + "/lib/aspectjrt.jar") :: "../lib/scala-library.jar" :: "." :: environment.classpath
-    sh("ajc -d build -classpath " + cp + " aspectj/LogComplex.aj")
+    if (environment.isWindows)
+        sh("ajc.bat -d build -classpath " + cp + " aspectj/LogComplex.aj")
+    else
+        sh("ajc -d build -classpath " + cp + " aspectj/LogComplex.aj")
     sh("java -classpath " + cp + " -javaagent:" + aspectj + "/lib/aspectjweaver.jar example.aspectj.ComplexMain")
 }
 
