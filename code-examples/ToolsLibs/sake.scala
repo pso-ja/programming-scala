@@ -86,7 +86,7 @@ target('compile -> List('clean, 'build_dir)) {
 
 target('spring -> 'compile) {
     val spring = environment.environmentVariables.get("SPRING_HOME")
-    val cp = (spring + "/dist/spring.jar") :: (spring + "/lib/jakarta-commons/commons-logging.jar") :: "." :: environment.classpath
+    val cp = (spring + "/dist/org.springframework.asm-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.beans-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.context-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.core-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.expression-3.0.3.RELEASE.jar") :: (spring + "/lib/jakarta-commons/commons-logging-1.1.1.jar") :: "." :: environment.classpath
     scala(
         'classpath -> cp,
         'opts -> "spring/object-bean-script.scala")
