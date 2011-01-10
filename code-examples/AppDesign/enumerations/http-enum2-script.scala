@@ -25,5 +25,5 @@ def handle (method: HttpMethod.Method) = method match {
   case Trace   => println(method + ": " + method.id)
 }
 
-HttpMethod foreach { method => handle(method) }
-println( HttpMethod )
+HttpMethod.values foreach { method => handle(method) }
+println( HttpMethod.values )

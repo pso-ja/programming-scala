@@ -30,5 +30,5 @@ class AtomFeed(posts: Seq[Post]) {
     }
   </feed>
 
-  def write = XML.saveFull(Config.atomPath, feed, "UTF-8", true, null)
+  def write = XML.save(Config.atomPath, feed, "UTF-8", true, null)
 }

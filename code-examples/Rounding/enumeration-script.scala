@@ -10,8 +10,8 @@ object Breed extends Enumeration {
 
 // print a list of breeds and their IDs
 println("ID\tBreed")
-for (breed <- Breed) println(breed.id + "\t" + breed)
+for (breed <- Breed.values) println(breed.id + "\t" + breed)
 
 // print a list of Terrier breeds
 println("\nJust Terriers:")
-Breed.filter(_.toString.endsWith("Terrier")).foreach(println)
+Breed.values.filter(_.toString.endsWith("Terrier")).foreach(println)

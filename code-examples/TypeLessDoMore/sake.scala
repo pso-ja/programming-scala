@@ -37,7 +37,7 @@ target('scripts) {
    files("**/*-v28-script.scala")).foreach { script =>
     scala(
         'classpath -> environment.classpath,
-        'opts -> script 
+        'opts -> ("-nocompdaemon " + script)
     )
   }
 }

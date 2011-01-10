@@ -28,8 +28,8 @@ public class SMapTest {
   @Test
   public void usingMapGetWithWarnings() {
     assertEquals(2, map.size());
-    Option<Name> n1 = map.get(1);  // warning
-    Option<Name> n2 = map.get(2);  // warning
+    Option<Name> n1 = map.get(1);  // warning (Scala 2.7.x)
+    Option<Name> n2 = map.get(2);  // warning (Scala 2.7.x)
     assertTrue(n1.isDefined());
     assertTrue(n2.isDefined());
     assertEquals("Dean", n1.get().firstName);

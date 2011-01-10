@@ -9,13 +9,13 @@ def mkRandomInts() = {
 }
 val ints1 = mkRandomInts
 
-println("Calling first on ints1 Seq:")
+println("Calling head on ints1 Seq:")
 for (i <- 1 to 3) {
-  println( ints1.first)
+  println(ints1.first)
 }
 
 val ints2 = ints1.toList
-println("Calling first on List created from ints1 Seq:")
+println("Calling head on List created from ints1 Seq:")
 for (i <- 1 to 3) {
-  println( ints2.first)
+  println(ints2.first)
 }

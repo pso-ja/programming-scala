@@ -14,7 +14,7 @@ abstract class Widget {
 
     def update(key: String, value: Any) = {
       // Do some preprocessing, e.g., filtering.
-      values = values.update(key, value)
+      values = values.updated(key, value)
       // Do some postprocessing.
     }
   }

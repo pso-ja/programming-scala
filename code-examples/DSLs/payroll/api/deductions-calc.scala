@@ -1,6 +1,8 @@
 // code-examples/DSLs/payroll/api/deductions-calc.scala
 
 package payroll.api
+
+import payroll._
 import payroll.Type2Money._
 
 object DeductionsCalculator {

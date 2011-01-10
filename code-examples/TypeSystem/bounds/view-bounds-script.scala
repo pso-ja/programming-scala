@@ -6,7 +6,7 @@ implicit def any2Node[A](x: A): Node[A] = bounds.::[A](x, NilNode)
 
 case class LinkedList[A <% Node[A]](val head: Node[A]) {
 
-  def ::[B >: A <% Node[B]](x: Node[B]) = 
+  def ::[B >: A <% Node[B]](x: Node[B]):LinkedList[B] = 
     LinkedList(bounds.::(x.payload, head))
     
   override def toString = head.toString

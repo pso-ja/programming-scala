@@ -10,7 +10,7 @@ class Barber extends Actor {
   private val random = new Random()
 
   def helpCustomer(customer: Customer) {
-    if (self.mailboxSize >= 3) {
+    if (mailboxSize >= 3) {
       println("[b] not enough seats, turning customer " + customer.id + " away")
     } else {
       println("[b] cutting hair of customer " + customer.id)

@@ -26,7 +26,7 @@ target('scripts) {
     files("**/reduceleftright-script.scala")).foreach { script =>
     scala(
         'classpath -> environment.classpath,
-        'opts -> script 
+        'opts -> ("-nocompdaemon " + script) 
     )
   }
 }

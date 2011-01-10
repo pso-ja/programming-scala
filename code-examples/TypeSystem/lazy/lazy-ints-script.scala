@@ -7,4 +7,5 @@ lazy val odds = ints.filter(_ % 2 == 1)
 lazy val evens = ints.filter(_ % 2 == 0)
 
 odds.take(10).print
+println
 evens.take(10).print

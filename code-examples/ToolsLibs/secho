@@ -2,5 +2,5 @@
 exec scala "$0" "$@"
 !#
 print("You entered: ")
-argv.toList foreach { s => format("%s ", s) }
+argv.toList foreach { s => printf("%s ", s) }
 println

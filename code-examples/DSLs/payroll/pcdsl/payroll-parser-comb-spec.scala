@@ -2,13 +2,14 @@
 
 package payroll.pcdsl
 import scala.util.parsing.combinator._
-import org.specs._ 
+import org.specs._
+import org.specs.matcher.Monoid
 import payroll._
 import payroll.Type2Money._
 
 // Doesn't test "sad path" scenarios...
-object PayrollParserCombinatorsSpec 
-    extends Specification("PayrollParserCombinators") { 
+object PayrollParserCombinatorsSpec
+    extends Specification("PayrollParserCombinators") {
 
   val salary = Money(100000.1)  // for a full year
   val gross = salary / 26.      // for two weeks
@@ -16,7 +17,18 @@ object PayrollParserCombinatorsSpec
   val employees = Map(buck.name -> buck)
 
   implicit def money2double(m: Money) = m.amount.doubleValue
-  
+  implicit def moneyToMonoid(v: Money) = new Monoid[Money] {
+    def +(t: Money) = v + t
+    def -(t: Money) = v - t
+  }
+
+  implicit def moneyToOrderd(v:Money) = new Ordered[Money] {
+    def compare(that: Money):Int =
+      if (v < that) -1
+      else if (v > that) 1
+      else  0
+  }
+
   "PayrollParserCombinators" should {
     "calculate the gross == net when there are no deductions" in {
       val input = """paycheck for employee "Buck Trends"
@@ -32,10 +44,10 @@ object PayrollParserCombinatorsSpec
         case x => fail(x.toString)
       }
     }
-    
+
     "calculate the gross, net, and deductions for the pay period" in {
-      val input = 
-        """paycheck for employee "Buck Trends" 
+      val input =
+        """paycheck for employee "Buck Trends"
            is salary for 2 weeks minus deductions for {
              federal income tax            is  25.  percent of gross,
              state income tax              is  5.   percent of gross,

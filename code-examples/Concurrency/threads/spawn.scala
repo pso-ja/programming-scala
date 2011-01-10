@@ -1,4 +1,4 @@
-// code-examples/Concurrency/threads/spawn-script.scala
+// code-examples/Concurrency/threads/spawn.scala
 
 import scala.concurrent.ops._
 

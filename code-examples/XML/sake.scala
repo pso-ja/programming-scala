@@ -34,7 +34,7 @@ target('scripts) {
     files("**/for-loop-script.scala")).foreach { script =>
     scala(
         'classpath -> environment.classpath,
-        'opts -> script 
+        'opts -> ("-nocompdaemon " + script) 
     )
   }
 }

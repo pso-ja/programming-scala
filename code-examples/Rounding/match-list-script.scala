@@ -6,7 +6,7 @@ val empty = List()
 
 def processList(l: List[Any]): Unit = l match {
   case head :: tail => 
-    format("%s ", head)
+    printf("%s ", head)
     processList(tail)
   case Nil => println("")
 }

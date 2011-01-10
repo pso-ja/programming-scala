@@ -5,13 +5,13 @@ import org.contract4j5.contract._
 class Person(
   @Pre( "name != null && name.length() > 0" ) 
   val name: String,
-  @Pre{ val value = "age > 0", val message = "You're too young!" }
+  @Pre( value = "age > 0", message = "You're too young!" )
   val age: Int,
   @Pre( "ssn != null" )
   val ssn: SSN)
     
 class SSN(
-  @Pre( "valid(ssn)" ) { val message = "Format must be NNN-NN-NNNN." }
+  @Pre( value = "valid(ssn)", message = "Format must be NNN-NN-NNNN." )
   val ssn: String) {
 
   private def valid(value: String) = 

@@ -4,8 +4,8 @@ import scala.reflect.Manifest
 
 object WhichList {
   def apply[B](value: List[B])(implicit m: Manifest[B]) = m.toString match {
-    case "int"              => println( "List[Int]" )
-    case "double"           => println( "List[Double]" )
+    case "Int"              => println( "List[Int]" )
+    case "Double"           => println( "List[Double]" )
     case "java.lang.String" => println( "List[String]" )
     case _                  => println( "List[???]" )
   }

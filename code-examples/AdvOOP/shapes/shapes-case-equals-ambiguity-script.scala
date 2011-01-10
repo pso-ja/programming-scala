@@ -10,5 +10,5 @@ case class FancyCircle(name: String, override val id: String,
 
 val fc = FancyCircle("me", "circle", Point(0.0,0.0), 10.0)
 val c  = Circle("circle", Point(0.0,0.0), 10.0)
-format("FancyCircle == Circle? %b\n", (fc == c))
-format("Circle == FancyCircle? %b\n", (c  == fc))
+printf("FancyCircle == Circle? %b\n", (fc == c))
+printf("Circle == FancyCircle? %b\n", (c  == fc))

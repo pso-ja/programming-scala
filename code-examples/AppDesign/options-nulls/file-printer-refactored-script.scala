@@ -34,7 +34,7 @@ class FilePrinter(val file: File) {
     reader.inputLine() match {
       case None => 
       case Some(line) => {
-        format("%3d: %s\n", reader.getLineNumber, line)
+        printf("%3d: %s\n", reader.getLineNumber, line)
         loop(reader)
       }
     }

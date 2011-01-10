@@ -6,7 +6,7 @@ import variances.{Option => JOption, None => JNone, Some => JSome, _}
 
 object JavaOptionSpec extends Specification { 
   "Java Option" should { 
-    val shapeNames = List("Rectangle", "Circle", "Triangle");
+    val shapeNames = List("Rectangle", "Circle", "Pentagon");
     var shapeOptions = List(
       OptionExample.makeShape(shapeNames(0), Point(0.,0.), (2.).asInstanceOf[Object], (5.).asInstanceOf[Object]),
       OptionExample.makeShape(shapeNames(1), Point(0.,0.), (2.).asInstanceOf[Object]),

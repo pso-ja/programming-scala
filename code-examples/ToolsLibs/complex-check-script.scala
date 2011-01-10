@@ -1,4 +1,5 @@
 // code-examples/ToolsLibs/complex-check-script.scala
+// modified for the newer ScalaCheck (tested with ScalaCheck1.6)
 
 import org.scalacheck._
 import org.scalacheck.Prop._
@@ -25,10 +26,10 @@ object ComplexSpecification extends Properties("Complex") {
 
   val zero = Complex(0.0, 0.0)
   
-  specify("addition with (0,0)", (a: Complex)  => additionTest(a, zero))
-  specify("subtraction with (0,0)", (a: Complex)  => subtractionTest(a, zero))
-
-  specify("addition", (a: Complex, b: Complex) => additionTest(a,b))
-  specify("subtraction", (a: Complex, b: Complex) => subtractionTest(a,b))
+  property("addition with (0,0)") = forAll { (a: Complex)  => additionTest(a, zero) }
+  property("subtraction with (0,0)") = forAll { (a: Complex)  => subtractionTest(a, zero) }
+  
+  property("addition") = forAll { (a: Complex, b: Complex) => additionTest(a,b) }
+  property("subtraction") = forAll { (a: Complex, b: Complex) => subtractionTest(a,b) }
 }
 ComplexSpecification.check

@@ -39,7 +39,7 @@ target('scripts) {
    files("**/pattern-match-actor-script.scala")).foreach { script =>
     scala(
         'classpath -> environment.classpath,
-        'opts -> script 
+        'opts -> ("-nocompdaemon " + script) 
     )
   }
 }

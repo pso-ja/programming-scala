@@ -19,5 +19,5 @@ List(buck, jane).foreach { employee =>
   
   val check = Paycheck(biweeklyGross, biweeklyGross - deductions, deductions)
   
-  format("%s %s: %s\n", employee.name.first, employee.name.last, check)
+  printf("%s %s: %s\n", employee.name.first, employee.name.last, check)
 }

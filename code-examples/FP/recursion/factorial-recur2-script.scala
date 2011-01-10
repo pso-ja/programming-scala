@@ -9,4 +9,4 @@ def factorial(i: BigInt): BigInt = {
 }
 
 for (i <- 1 to 10)
-  format("%s: %s\n", i, factorial(i))
+  printf("%s: %s\n", i, factorial(i))

@@ -13,8 +13,8 @@ val charlie = new Person("Charlie", 32, Developer)
 for (item <- Map(1 -> alice, 2 -> bob, 3 -> charlie)) {
   item match {
     case (id, p: Person) => p.role match {
-      case Manager => format("%s is overpaid.\n", p)
-      case _ => format("%s is underpaid.\n", p)
+      case Manager => printf("%s is overpaid.\n", p)
+      case _ => printf("%s is underpaid.\n", p)
     }
   }
 }

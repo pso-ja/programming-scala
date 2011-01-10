@@ -17,6 +17,6 @@ trait AllOpChars {
   def ^  : Unit   // $up
   def &  : Unit   // $amp
   def @@ : Unit   // $at$at
-  def ## : Unit   // $hash$hash
+  def ## : Int    // $hash$hash
   def ~  : Unit   // $tilde
 }

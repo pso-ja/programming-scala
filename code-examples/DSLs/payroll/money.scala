@@ -1,21 +1,21 @@
 // code-examples/DSLs/payroll/money.scala
 
 package payroll
-import java.math.{BigDecimal => JBigDecimal, 
+import java.math.{BigDecimal => JBigDecimal,
     MathContext => JMathContext, RoundingMode => JRoundingMode}
 
 /** Most arithmetic is done using JBigDecimals for tighter control.
  */
 class Money(val amount: BigDecimal) {
 
-  def + (m: Money)  = 
+  def + (m: Money)  =
       Money(amount.bigDecimal.add(m.amount.bigDecimal))
-  def - (m: Money)  = 
+  def - (m: Money)  =
       Money(amount.bigDecimal.subtract(m.amount.bigDecimal))
-  def * (m: Money)  = 
+  def * (m: Money)  =
       Money(amount.bigDecimal.multiply(m.amount.bigDecimal))
-  def / (m: Money)  = 
-      Money(amount.bigDecimal.divide(m.amount.bigDecimal, 
+  def / (m: Money)  =
+      Money(amount.bigDecimal.divide(m.amount.bigDecimal,
           Money.scale, Money.jroundingMode))
 
   def <  (m: Money)  = amount <  m.amount
@@ -27,11 +27,11 @@ class Money(val amount: BigDecimal) {
     case m: Money => amount equals m.amount
     case _ => false
   }
-  
+
   override def hashCode = amount.hashCode * 31
 
   // Hack: Must explicitly call the correct conversion: double2Double
-  override def toString = 
+  override def toString =
       String.format("$%.2f", double2Double(amount.doubleValue))
 }
 
@@ -43,12 +43,12 @@ object Money {
   def apply(amount: Int)         = new Money(scaled(BigDecimal(amount)))
 
   def unapply(m: Money) = Some(m.amount)
-  
+
   protected def scaled(d: BigDecimal) = d.setScale(scale, roundingMode)
-  
+
   val scale = 4
   val jroundingMode = JRoundingMode.HALF_UP
-  val roundingMode  = BigDecimal.RoundingMode.ROUND_HALF_UP
+  val roundingMode  = BigDecimal.RoundingMode.HALF_UP
   val context = new JMathContext(scale, jroundingMode)
 }
 

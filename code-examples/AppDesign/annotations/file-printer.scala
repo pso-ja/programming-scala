@@ -19,7 +19,7 @@ class FilePrinter(val file: File) {
   private def loop(reader: LineNumberReader): Unit = {
     val line = reader.readLine()
     if (line != null) {
-      format("%3d: %s\n", reader.getLineNumber, line)
+      printf("%3d: %s\n", reader.getLineNumber, line)
       loop(reader)
     }
   }

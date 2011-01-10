@@ -18,5 +18,5 @@ val jane = Employee(Name("Jane", "Doe"), Money(90000))
 
 List(buck, jane).foreach { employee =>
   val check = payrollCalculator(employee)
-  format("%s %s: %s\n", employee.name.first, employee.name.last, check)
+  printf("%s %s: %s\n", employee.name.first, employee.name.last, check)
 }
