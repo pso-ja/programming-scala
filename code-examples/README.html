@@ -1,0 +1,118 @@
+<html>
+<head>
+  <title>"Programming Scala": README for Code Examples</title>
+</head>
+<body>
+<h1 id="programming_scala_1st_edition">Programming Scala, 1st Edition</h1>
+
+<h2 id="readme_for_the_code_examples">README for the Code Examples</h2>
+
+<p>Dean Wampler and Alex Payne <br>
+September 20, 2009</p>
+
+<p>This archive contains all the code examples found in <a href="http://programming-scala.labs.oreilly.com/">Programming Scala</a>, with the exception of several code snippets in the text. In the book, all the examples for which there are corresponding files here begin with a path comment like this:</p>
+
+<pre><code>// code-examples/chapter/../filename
+</code></pre>
+
+<p>Use these comments to find the corresponding file in this distribution. In addition, this archive contains Scala <em>Specs</em> to test the code, most of which are not reproduced in the text of the book. <em>Specs</em> is a Behavior-Driven Development - BDD - tool like RSpec for Ruby. It is discussed in the <em>Tools and Libraries</em> chapter of the book.</p>
+
+<h2 id="naming_conventions">Naming Conventions</h2>
+
+<p>The examples include scripts that are run with the <code>scala</code> command, source files that are compiled with <code>scalac</code>, and source files that deliberately fail to compile. To keep then straight and to support the build process, the following naming conventions are used for the files.</p>
+
+<ul>
+<li><code>sake.scala</code> - build scripts for the <em>sake</em> build tool (described below).</li>
+<li><code>*-script.scala</code> - Scripts that you can run using, for example, <code>scala foo-script.scala</code>. These script are executed as part of the normal compile and test process, but currently their outputs aren&#8217;t checked automatically for correctness. (If they fail outright, they cause the build to fail.)</li>
+<li><code>*-wont-compile.scala</code> - Scala files that are used in the book, but deliberately don&#8217;t compile. They are also excluded from the build.</li>
+<li><code>*-v28-*.scala</code> - Scala version 2.8 only. These files demonstrate new 2.8 features (see note below).</li>
+<li>All other <code>*.scala</code> files - Compilable Scala files that are built and tested by the <em>sake</em> build process.</li>
+</ul>
+
+<blockquote>
+  <p>NOTE: While we have tried to ensure that all files work with Scala version 2.8, that release has not matured as fast as we expected while writing the book. For example, some libraries we use do not yet support v2.8. Therefore, the build process will not work, as is, with the v2.8 tool chain.</p>
+</blockquote>
+
+<h2 id="building_the_code_examples">Building the Code Examples</h2>
+
+<p>To build and run the examples, the following tools must be installed with the appropriate environment variables set (e.g., <code>PATH</code>), so that the tools can be used from the command line.</p>
+
+<ul>
+<li>Scala version 2.7.5 or later (excluding version 2.8).</li>
+<li>Java 1.5 or later.</li>
+</ul>
+
+<p>To build the examples and run the tests, change to the <code>code-examples</code> directory and use the following shell command</p>
+
+<pre><code>bin/sake
+</code></pre>
+
+<p>There will be a <em>lot</em> of output. (The <em>sake</em> build tool is described below.) You will find both a <em>bash</em> shell and a Windows command shell version of this script in <code>bin</code>. However, the Windows version does not support the options supported by the <em>bash</em> version at this time.</p>
+
+<p>This <code>sake</code> script reads the build targets and rules from the <code>sake.scala</code> file in the current directory (analogous to a <em>make</em> file). The top-level build file simple iterates through all the chapter directories and builds the <code>all</code> target in each of them.</p>
+
+<p>The <code>all</code> target in the <code>saka.scala</code> file for each chapter begins by cleaning previous build artifacts. The source files (i.e., non-scripts, as described above) are compiled and the tests are run, most of which are written using <em>Specs</em>. Finally, most of the &#8220;scripts&#8221; are executed, although their output is not automatically checked for the correct results, at this time.</p>
+
+<p>In some directories, some compilable files and scripts are excluded for various reasons. These exceptions are documented in the corresponding <code>sake.scala</code> build files. </p>
+
+<p>Each directory under <code>code-examples</code> corresponds to a chapter in the book. If you want to build in those individual directories, run the following command:</p>
+
+<pre><code>../bin/sake [target]
+</code></pre>
+
+<p>The targets supported include the following:</p>
+
+<pre><code>all             Default target
+clean           Remove build artifacts
+compile         Compile the non-script Scala files
+spec            Run the tests (Specs) files
+scripts         Run the script files
+</code></pre>
+
+<p>Some chapters have only script files. For them, the <code>clean</code>, <code>compile</code>, and <code>spec</code> targets do nothing.</p>
+
+<p>Many of the script files depend on other code compiled for the same chapter (if any). All compiled class files are written to the <code>build</code> directory corresponding to each chapter. In some cases, scripts rely on code in other chapters or on some of the jars in the top-level <code>lib</code> directory. Hence, to run an individual script file, <em>e.g.,</em> <code>foo-script.scala</code>, try the following command first.</p>
+
+<pre><code>scala foo-script.scala
+</code></pre>
+
+<p>If it requires code in the build directory, run the <code>../bin/sake</code> command first to build the code, then try the following:</p>
+
+<pre><code>scala -classpath build foo-script.scala
+</code></pre>
+
+<p>Finally, if the the script appears to require one or more jars from <code>lib</code>, add those jars to the <code>classpath</code> argument, <em>e.g.,</em></p>
+
+<pre><code>scala -classpath build:../lib/junit4-5.jar foo-script.scala
+</code></pre>
+
+<h3 id="optional_build_targets">Optional Build Targets</h3>
+
+<p>There are a few examples in the book that use <em>Ant</em> with <em>Ivy</em>, <em>AspectJ</em>, or <em>Spring</em> (but never at the same time ;). These are not built by default, so we don&#8217;t assume you have those tools installed. If you want to build some or all of them, you&#8217;ll need one or more of the following tools installed.</p>
+
+<pre><code>- Ant 1.7+ and Ivy 2 
+- AspectJ 1.6 or later
+- Spring 2.5 or later
+</code></pre>
+
+<p><em>Ant</em> and <em>Ivy</em> are required to build the SMTPD example in the <code>Concurrency</code> chapter. If you want to build it, go to the <code>Concurrency/smtpd</code> directory and run the command <code>ant</code>.</p>
+
+<p><em>AspectJ</em> and <em>Spring</em> are only required if you build the examples in the <code>ToolsLibs</code> directory that demonstrate integration between these tools and Scala. In the <code>ToolsLibs</code> directory, run either or both of the following commands:</p>
+
+<pre><code>../bin/sake spring
+../bin/sake aspectj
+</code></pre>
+
+<h2 id="about_sake">About Sake</h2>
+
+<p>As an exercise, Dean built a build tool, named <em>sake</em> (as in the Japanese alcoholic beverage) that we used for the code examples. It&#8217;s inspired by Ruby <em>rake</em> and Unix <em>make</em>. It&#8217;s quite incomplete in terms of features and it has a number of warts. Nevertheless, it provides a nontrivial example of implementing an <em>internal</em> DSL in Scala. (There is a chapter on DSLs in the book.)</p>
+
+<p>The <code>sake</code> driver script for *nix-like systems is in the <code>bin</code> directory. There is also a <code>sake.bat</code> for Windows systems (but it is largely untested and it supports fewer invocation options). The corresponding jar file and a jar of the source code are in the <code>lib</code> directory. Sake is maintained at <a href="http://github.com/deanwampler/SakeScalaBuildTool">http://github.com/deanwampler/SakeScalaBuildTool</a>.</p>
+
+<p>The <em>Scala Tools, Libraries, and IDE Support</em> chapter in the book discuss build tool options. If you are looking for &#8220;production quality&#8221; alternatives to <em>ant</em> and <em>maven</em>, we recommend that you consider the <em>Simple Build Tool</em> (sbt) or <em>Buildr</em>.</p>
+
+<h2 id="feedback">Feedback</h2>
+
+<p>We welcome feedback on the examples. For the code that actually appears in the book, you can post comments, corrections, etc. at the public &#8220;labs&#8221; site, <a href="http://programming-scala.labs.oreilly.com/">http://programming-scala.labs.oreilly.com/</a>. Or, you can post feedback on the <a href="http://forums.oreilly.com/">O&#8217;Reilly forum</a>. We always appreciate your willingness to provide feedback.</p>
+</body>
+</html>
