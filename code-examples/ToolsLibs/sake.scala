@@ -105,7 +105,7 @@ target('aspectj -> 'compile) {
     val aspectj = environment.environmentVariables.get("ASPECTJ_HOME")
     val cp = (aspectj + "/lib/aspectjrt.jar") :: "../lib/scala-library.jar" :: "." :: environment.classpath
     if (environment.isWindows)
-        sh("ajc.bat -d build -classpath \"" + cp + "\" aspectj/LogComplex.aj")
+        sh("ajc.bat -d build -classpath " + cp + " aspectj/LogComplex.aj")
     else
         sh("ajc -d build -classpath " + cp + " aspectj/LogComplex.aj")
     sh("java -classpath " + cp + " -javaagent:" + aspectj + "/lib/aspectjweaver.jar example.aspectj.ComplexMain")
