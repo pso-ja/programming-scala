@@ -85,7 +85,12 @@ target('compile -> List('clean, 'build_dir)) {
 
 target('spring -> 'compile) {
     val spring = environment.environmentVariables.getOrElse("SPRING_HOME", "")
-    val cp = (spring + "/dist/org.springframework.asm-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.beans-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.context-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.core-3.0.3.RELEASE.jar") :: (spring + "/dist/org.springframework.expression-3.0.3.RELEASE.jar") :: (spring + "/lib/jakarta-commons/commons-logging-1.1.1.jar") :: "." :: environment.classpath
+    val springVersion  = environment.environmentVariables.getOrElse("SPRING_VERSION", "3.0.3.RELEASE")
+    val loggingVersion = environment.environmentVariables.getOrElse("COMMONS_LOGGING_VERSION", "1.1.1")
+    val modules = List("asm", "beans", "context", "core", "expression")
+    val cp = modules.map(spring + String.format("/dist/org.springframework.%s-%s.jar", _, springVersion)) :::
+             ((spring + String.format("/lib/jakarta-commons/commons-logging-%s.jar", loggingVersion)) ::
+              "." :: environment.classpath)
     scala(
         'classpath -> cp,
         'opts -> "spring/object-bean-script.scala")
