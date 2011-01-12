@@ -86,7 +86,16 @@ target('compile -> List('clean, 'build_dir)) {
 
 target('spring -> 'compile) {
     val spring = environment.environmentVariables.get("SPRING_HOME")
-    val cp = (spring + "/dist/spring.jar") :: (spring + "/lib/jakarta-commons/commons-logging.jar") :: "." :: environment.classpath
+    var springVersion  = "3.0.3.RELEASE"
+    var loggingVersion = "1.1.1"
+    if (environment.environmentVariables.get("SPRING_VERSION") != null)
+        springVersion  = environment.environmentVariables.get("SPRING_VERSION")
+    if (environment.environmentVariables.get("COMMONS_LOGGING_VERSION") != null)
+        loggingVersion  = environment.environmentVariables.get("COMMONS_LOGGING_VERSION")
+    val modules = List("asm", "beans", "context", "core", "expression")
+    val cp = modules.map(spring + String.format("/dist/org.springframework.%s-%s.jar", _, springVersion)) :::
+             ((spring + String.format("/lib/jakarta-commons/commons-logging-%s.jar", loggingVersion)) ::
+              "." :: environment.classpath)
     scala(
         'classpath -> cp,
         'opts -> "spring/object-bean-script.scala")
@@ -95,7 +104,10 @@ target('spring -> 'compile) {
 target('aspectj -> 'compile) {
     val aspectj = environment.environmentVariables.get("ASPECTJ_HOME")
     val cp = (aspectj + "/lib/aspectjrt.jar") :: "../lib/scala-library.jar" :: "." :: environment.classpath
-    sh("ajc -d build -classpath " + cp + " aspectj/LogComplex.aj")
+    if (environment.isWindows)
+        sh("ajc.bat -d build -classpath " + cp + " aspectj/LogComplex.aj")
+    else
+        sh("ajc -d build -classpath " + cp + " aspectj/LogComplex.aj")
     sh("java -classpath " + cp + " -javaagent:" + aspectj + "/lib/aspectjweaver.jar example.aspectj.ComplexMain")
 }
 
