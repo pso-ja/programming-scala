@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>「プログラミングScala」: サンプルコード</title>
+</head>
+<body>
+<h1>「プログラミングScala」サンプルコード</h1>
+<h2>README.ja</h2>
+<p>2011年1月<br>オブジェクトの広場編集部</p>
+
+<p>このアーカイブは「<a href="http://www.oreilly.co.jp/books/9784873114811/">プログラミングScala</a>」のサンプルコードです。</p>
+
+<p>サンプルコードは、Scala2.8用とScala2.7用に分かれています。使用するScalaに対応したサンプルコードをダウンロードしてください。</p>
+
+<p>Scala2.8向けのサンプルコードは、原書のサンプルコードをScala2.8で動作するように変更し、日本語版付録のサンプルコードを追加したものです。Scala 2.8.0-finalで動作確認しています。</p>
+<p>また、Windows環境でも動作するScala2.8用のsakeを含んでいます。Scala2.7向けのソースコードは、原書のサンプルコードにWindows環境でも動作するScala2.7用のsakeを含んでいます。Scala 2.7.7-finalで動作確認しています。</p>
+
+<h2> サンプルコードのビルド・実行について </h2>
+<p>サンプルコードをビルド・実行するためには、
+
+<ul>
+<li>Scala 2.7.5(2.7.7推奨)以降、もしくはScala 2.8.0(2.8.0推奨)以降</li>
+<li>Java 1.5以降</li>
+</ul>
+
+が必要です。必要に応じてインストールしてください。</p>
+
+<p>code-example以下のソースコードは、sakeでビルド・実行することができます。code-example以下のビルドしたい章のディレクトリに移動し、Unix環境であれば
+<pre><code>../bin/sake</code></pre>
+を、Windows環境であれば
+<pre><code> ..\bin\sake.bat</code></pre>
+を実行してください。各ディレクトリのサンプルコードをビルド・実行します。</p>
+
+<p>コードの詳細なビルド・実行方法については、code-example/README.htmlを参照してください。15章および16章の実行方法については、本文を参照してください。</p>
+
+<h2>ディレクトリ構成</h2>
+<p>code-examples以下のディレクトリは章と対応しています。章とディレクトリの対応を以下に示します。
+<ul>
+<li>1章 IntroducingScala</li>
+<li>2章 TypeLessDoMore</li>
+<li>3章 Rounding</li>
+<li>4章 Traits</li>
+<li>5章 BasicOOP</li>
+<li>6章 AdvOOP</li>
+<li>7章 ObjectSystem</li>
+<li>8章 FP</li>
+<li>9章 Concurrency</li>
+<li>10章 XML</li>
+<li>11章 DSLs</li>
+<li>12章 TypeSystem</li>
+<li>13章 AppDesign</li>
+<li>14章 ToolsLibs</li>
+<li>15章 SimpleBuildTool(Scala2.8.0向けアーカイブのみ)</li>
+<li>16章 Scala28(Scala2.8.0向けアーカイブのみ)</li>
+</ul>
+
+日本語版で追記された15章および16章のサンプルコードは、Scala2.8向けアーカイブにのみ、含まれています。</p>
+
+<h2>サンプルコードの注意点</h2>
+<h3>sakeについて</h3>
+<p>サンプルコードをビルド・実行するためにsakeというツールを使用しています。sakeについては、<a href="https://github.com/deanwampler/SakeScalaBuildTool">https://github.com/deanwampler/SakeScalaBuildTool</a>またはcode-examples/README.htmlのsakeの部分を参照してください。</p>
+<p>翻訳時点でsakeはWindowsに対応していなかったので、翻訳者でWindowsでも動作するように修正しましたが、まだ不具合があります。</p>
+<ul>
+
+<li>Windows環境でsakeが止まることがある</li>
+<p>Windows環境では、javaのデーモンプロセスと通信する際にsakeの動作が止まることがあります。この場合バッチファイルをCtrl-Cで終了し、再度sake.batを実行すれば問題なく動作します。また、回避策として、sakeを実行する前にfsc.batを実行しておくという方法もあります。引数をつけずにfsc.batを実行するとコマンドラインヘルプが表示されますが問題ありません。fsc.batを実行することでjavaのプロセスがバックグラウンドで起動されます。このjavaプロセスを立ち上げておけば、sakeは問題なく動作します。Unix環境やOSXではこの問題が発生することはありません。</p>
+</ul>
+
+<p>Windowsに対応したsakeのソースコードは、<a href="https://github.com/kazumi007/SakeScalaBuildTool/">https://github.com/kazumi007/SakeScalaBuildTool/</a>で公開しています。</p>
+
+<h3>「9.4.3 イベント」のサンプルコード</h3>
+<p>「9.4.3 イベント」のサンプルコード(code-examples/Concurrency/smtpd)は翻訳時点でNagattiがScala 2.8に対応していなかったため、Scala 2.8でのテストを行なっていません。</p>
+
+以上
+</body>
+</html>
