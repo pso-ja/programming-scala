@@ -1,14 +1,98 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>プログラミングScala　サポートページ</title>
+<style type="text/css">
+body { margin-left: 2%;
+       margin-right: 2%;
+       margin-top: 1em;
+       background-color:white;}
+h1 { color:white;
+     background-color:mediumvioletred;
+     text-align:center;
+     font-weight: bold;
+     font-size: 24pt;
+}
+h2 { border-left: 8px solid mediumvioletred;
+     border-bottom: 2px solid mediumvioletred;
+     margin-top: 1em;
+     margin-bottom: 0.1em;
+     padding-left: 8px;
+     text-align: left;
+     font-weight: bold;
+}
+h3 { border-bottom: 2px solid mediumvioletred;
+     margin-top: 0.5em;
+     margin-bottom: 0.1em;
+     text-align: left;
+     font-weight: bold;
+}
 
-	<title>プログラミングScalaサポートページ</title>
+h4 { border-bottom: 1px solid mediumvioletred;
+     margin-top: 1.0em;
+     margin-bottom: 0.5em;
+     text-align: left;
+     font-weight: bold;
+}
+</style>
 </head>
-
 <body>
-    <p>プログラミングScalaサポートページは現在準備中です。</p>
+
+<h1>プログラミングScala</h1>
+<p><img src="http://www.oreilly.co.jp/books/images/picture_large978-4-87311-481-1.jpeg" width=245 height=330 hspace=20 align="right">
+『プログラミングScala』(Dean Wampler著、Alex Payne著、株式会社オージス総研 オブジェクトの広場編集部訳、オライリー・ジャパン、定価3,990円)のサポートページです。</p>
+<p>原著は、<a href="http://oreilly.com/catalog/9780596155964">『Programming Scala』(Dean Wampler, Alex Payne)</a>です。オライリー・ジャパンのサイトは<a href="http://www.oreilly.co.jp/books/9784873114811/">こちら</a>。Amazonで本書を購入する場合は、<a href="http://www.amazon.co.jp/dp/4873114810">こちら</a>。</p>
+
+<h2>新着情報</h2>
+<ul>
+<li>2011年1月13日に<a href="http://www.ogis-ri.co.jp/otc/hiroba/ogisbooks/scala.html">オブジェクトの広場2011/01号</a>で、本書『プログラミングScala』が紹介されました。</li>
+</ul>
+
+<h2>サンプルコード</h2>
+
+<p>サンプルコードは、次からダウンロードできます。</p>
+<ul>
+<li>Scala2.8向け(<a href="https://github.com/downloads/pso-ja/programming-scala/code-examples-scala28-20110115.zip">zip</a>|<a href="https://github.com/downloads/pso-ja/programming-scala/code-examples-scala28-20110115.tar.gz">tar.gz</a>)</li>
+<li>Scala2.7向け(<a href="https://github.com/downloads/pso-ja/programming-scala/code-examples-scala27-20110115.zip">zip</a>|<a href="https://github.com/downloads/pso-ja/programming-scala/code-examples-scala27-20110115.tar.gz">tar.gz</a>)</li>
+</ul>
+
+<p>Scala2.8向けのサンプルコードとScala2.7向けのサンプルコードは互換性がありません。対応するバージョンのサンプルコードをダウンロードしてください。</p>
+
+<p>Scala2.8向けのサンプルコードは、原書のサンプルコードをScala2.8で動作するように変更し、日本語版付録のサンプルコードを追加したものです。また、Windows環境でも動作するScala2.8用のsakeを含んでいます。Scala 2.8.0-finalで動作確認しています。</p>
+<p>Scala2.7向けのソースコードは、原書のサンプルコードにWindows環境でも動作するScala2.7用のsakeを含んでいます。Scala 2.7.7-finalで動作確認しています。</p>
+
+<p>原書のソースコードは<a href="http://examples.oreilly.com/9780596155964/">こちら</a>。</p>
+
+<p>サンプルコードの実行方法については、README.ja.htmlおよびcode-examples/README.htmlを参照してください。</p>
+
+<h2>正誤表</h2>
+<p>ここに載っていない間違いを見つけた方は、オライリー・ジャパンの<a href="http://www.oreilly.co.jp/feedback/">フィードバック</a>か、メールにて直接ご連絡下さい。連絡先は、kazumi007+pso at gmail dot comです。</p>
+
+<p>原書の正誤表は、<a href="http://oreilly.com/catalog/errata.csp?isbn=9780596155964">http://oreilly.com/catalog/errata.csp?isbn=9780596155964</a>から、参照できます。</p>
+
+<h3>第一刷正誤表</h3>
+<p>
+<table border="1">
+<tr>
+<th width="40">頁</th><th width="40">行数等</th><th width="180">変更前</th><th witdh="180">変更後</th><th width="180">注</th><th width="80">公開日<br/>(年月日)</th>
+</tr>
+<tr>
+  <td>427</td>
+  <td>2行目</td>
+  <td>java -Xmx512M -jar `dirname $0`/sbt-launch.jar "$@"</td>
+  <td>java -Xmx512M -jar `dirname $0`/sbt-launch-0.7.4.jar "$@"</td>
+  <td></td>
+  <td>2011/1/15</td>
+</tr>
+<tr>
+  <td>471</td>
+  <td>1行目</td>
+  <td>16.3 サンプルコード</td>
+  <td>16.4 サンプルコード</td>
+  <td></td>
+  <td>2011/1/15</td>
+</tr>
+</table>
+</p>
 </body>
 </html>
